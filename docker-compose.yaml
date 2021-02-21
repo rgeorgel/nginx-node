@@ -12,8 +12,6 @@ services:
     volumes:
       - ./node:/usr/src/app
     tty: true
-    ports:
-      - "3000:3000"
     depends_on:
       - db
 
@@ -31,6 +29,16 @@ services:
       - MYSQL_USER=root
     networks:
       - network-nginx-node
+
+  nginx:
+    build:
+      context: ./nginx
+#    image: wesleywillians/nginx:prod
+    container_name: nginx
+    networks:
+      - network-nginx-node
+    ports:
+      - "8080:80"
 
 networks:
   network-nginx-node:
