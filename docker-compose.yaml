@@ -34,12 +34,13 @@ services:
   nginx:
     build:
       context: ./nginx
-#    image: wesleywillians/nginx:prod
     container_name: nginx
     networks:
       - network-nginx-node
     ports:
       - "8080:80"
+    depends_on:
+      - app
 
 networks:
   network-nginx-node:
